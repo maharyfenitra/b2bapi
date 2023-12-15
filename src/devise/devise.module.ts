@@ -5,4 +5,4 @@ import { DeviseResolver } from './devise.resolver';
 @Module({
   providers: [DeviseResolver, DeviseService],
 })
-export class DeviseModule {}
+export class DeviseModule { }

@@ -5,4 +5,4 @@ import { DeliveryResolver } from './delivery.resolver';
 @Module({
   providers: [DeliveryResolver, DeliveryService],
 })
-export class DeliveryModule {}
+export class DeliveryModule { }

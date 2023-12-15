@@ -5,4 +5,4 @@ import { TraductionResolver } from './traduction.resolver';
 @Module({
   providers: [TraductionResolver, TraductionService],
 })
-export class TraductionModule {}
+export class TraductionModule { }
