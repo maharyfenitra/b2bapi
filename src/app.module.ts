@@ -23,4 +23,4 @@ import { TraductionModule } from './traduction/traduction.module';
     UsersModule, OrderModule, InvoiceModule, DeliveryModule, PaymentModule, AccountingModule, ItemModule, DeviseModule, TraductionModule],
 
 })
-export class AppModule { }
+export class AppModule {}
