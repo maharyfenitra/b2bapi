@@ -5,4 +5,4 @@ import { InvoiceResolver } from './invoice.resolver';
 @Module({
   providers: [InvoiceResolver, InvoiceService],
 })
-export class InvoiceModule {}
+export class InvoiceModule { }

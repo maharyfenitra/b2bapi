@@ -5,4 +5,4 @@ import { PaymentResolver } from './payment.resolver';
 @Module({
   providers: [PaymentResolver, PaymentService],
 })
-export class PaymentModule {}
+export class PaymentModule { }

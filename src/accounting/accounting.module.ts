@@ -5,4 +5,4 @@ import { AccountingResolver } from './accounting.resolver';
 @Module({
   providers: [AccountingResolver, AccountingService],
 })
-export class AccountingModule {}
+export class AccountingModule { }
