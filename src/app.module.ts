@@ -2,15 +2,15 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UsersModule } from './users/users.module';
-import { OrderModule } from './order/order.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { InvoiceModule } from './invoice/invoice.module';
-import { DeliveryModule } from './delivery/delivery.module';
-import { PaymentModule } from './payment/payment.module';
 import { AccountingModule } from './accounting/accounting.module';
-import { ItemModule } from './item/item.module';
-import { DeviseModule } from './devise/devise.module';
-import { TraductionModule } from './traduction/traduction.module';
+import { TranslationsModule } from './translations/translations.module';
+import { CurrenciesModule } from './currencies/currencies.module';
+import { DeliveriesModule } from './deliveries/deliveries.module';
+import { PayementsModule } from './payements/payements.module';
+import { ItemsModule } from './items/items.module';
+import { OrdersModule } from './orders/orders.module';
+import { InvoicesModule } from './invoices/invoices.module';
 
 @Module({
   imports: [
@@ -20,7 +20,7 @@ import { TraductionModule } from './traduction/traduction.module';
     }),
     MongooseModule.forRoot('mongodb://localhost/b2b'),
 
-    UsersModule, OrderModule, InvoiceModule, DeliveryModule, PaymentModule, AccountingModule, ItemModule, DeviseModule, TraductionModule],
+    UsersModule, AccountingModule, TranslationsModule, CurrenciesModule, DeliveriesModule, PayementsModule, ItemsModule, OrdersModule, InvoicesModule],
 
 })
 export class AppModule {}
