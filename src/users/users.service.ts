@@ -10,20 +10,15 @@ export class UsersService {
     constructor(@InjectModel(User.name) private userModel: Model<User>) { }
 
     async findAll(): Promise<UserModele[]> {
-        return [
-            {
-                id: "",
-                firstName: "Mateo",
-                lastName:" kkk",
-                password: ""
-            }
-        ]
+        return this.userModel.find().exec()
     }
 
     async createUser(user) {
 
-        const userC = await new this.userModel(user).save();
-        
-        return userC
+        return await new this.userModel(user).save();
+    }
+
+    async findUser(user): Promise<UserModele[]>{
+        return await this.userModel.find({...user}).exec();
     }
 }

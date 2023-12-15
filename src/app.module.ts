@@ -4,6 +4,13 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UsersModule } from './users/users.module';
 import { OrderModule } from './order/order.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { InvoiceModule } from './invoice/invoice.module';
+import { DeliveryModule } from './delivery/delivery.module';
+import { PaymentModule } from './payment/payment.module';
+import { AccountingModule } from './accounting/accounting.module';
+import { ItemModule } from './item/item.module';
+import { DeviseModule } from './devise/devise.module';
+import { TraductionModule } from './traduction/traduction.module';
 
 @Module({
   imports: [
@@ -13,7 +20,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     }),
     MongooseModule.forRoot('mongodb://localhost/b2b'),
 
-    UsersModule, OrderModule],
+    UsersModule, OrderModule, InvoiceModule, DeliveryModule, PaymentModule, AccountingModule, ItemModule, DeviseModule, TraductionModule],
 
 })
 export class AppModule { }

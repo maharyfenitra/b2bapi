@@ -29,14 +29,86 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Invoice {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Delivery {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Payment {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Accounting {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Item {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Devise {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Traduction {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 type Query {
   users: [UserModele!]!
-  findUser: UserModele!
+  findUser(searchUserData: UserSearchInput!): [UserModele!]!
   orders: [OrderModele!]!
+  invoice(id: Int!): Invoice!
+  delivery(id: Int!): Delivery!
+  payment(id: Int!): Payment!
+  accounting(id: Int!): Accounting!
+  item(id: Int!): Item!
+  devise(id: Int!): Devise!
+  traduction(id: Int!): Traduction!
+}
+
+input UserSearchInput {
+  id: String
+  firstName: String
+  lastName: String
+  password: String
+  type: String
 }
 
 type Mutation {
   create(createUserData: UserInput!): UserModele!
+  update(createUserData: UserUpdateInput!): UserModele!
+  createInvoice(createInvoiceInput: CreateInvoiceInput!): Invoice!
+  updateInvoice(updateInvoiceInput: UpdateInvoiceInput!): Invoice!
+  removeInvoice(id: Int!): Invoice!
+  createDelivery(createDeliveryInput: CreateDeliveryInput!): Delivery!
+  updateDelivery(updateDeliveryInput: UpdateDeliveryInput!): Delivery!
+  removeDelivery(id: Int!): Delivery!
+  createPayment(createPaymentInput: CreatePaymentInput!): Payment!
+  updatePayment(updatePaymentInput: UpdatePaymentInput!): Payment!
+  removePayment(id: Int!): Payment!
+  createAccounting(createAccountingInput: CreateAccountingInput!): Accounting!
+  updateAccounting(updateAccountingInput: UpdateAccountingInput!): Accounting!
+  removeAccounting(id: Int!): Accounting!
+  createItem(createItemInput: CreateItemInput!): Item!
+  updateItem(updateItemInput: UpdateItemInput!): Item!
+  removeItem(id: Int!): Item!
+  createDevise(createDeviseInput: CreateDeviseInput!): Devise!
+  updateDevise(updateDeviseInput: UpdateDeviseInput!): Devise!
+  removeDevise(id: Int!): Devise!
+  createTraduction(createTraductionInput: CreateTraductionInput!): Traduction!
+  updateTraduction(updateTraductionInput: UpdateTraductionInput!): Traduction!
+  removeTraduction(id: Int!): Traduction!
 }
 
 input UserInput {
@@ -45,4 +117,88 @@ input UserInput {
   lastName: String!
   password: String!
   type: String
+}
+
+input UserUpdateInput {
+  firstName: String
+  lastName: String
+  password: String
+  type: String
+}
+
+input CreateInvoiceInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateInvoiceInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateDeliveryInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateDeliveryInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreatePaymentInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdatePaymentInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateAccountingInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateAccountingInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateItemInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateItemInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateDeviseInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateDeviseInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateTraductionInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateTraductionInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
