@@ -2,6 +2,19 @@ import { InputType, Int, Field } from '@nestjs/graphql';
 
 @InputType()
 export class CreateOrderInput {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+
+  @Field(() => String)
+  client_id: string;
+
+  @Field(() => String)
+  provider_id: string;
+
+  @Field({ nullable: true })
+  status: number;
+
+  @Field(() => String, { description: 'Order reference' })
+  reference: string;
+
+  @Field()
+  date: Date;
 }

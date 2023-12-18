@@ -8,14 +8,8 @@ export class OrderEntity {
   @Field()
   client_id: string;
 
-  @Field()
-  provider_id: string;
-
   @Field(() => String, { description: 'Order reference' })
   reference: string;
-
-  @Field(() => String, { description: 'Order description' })
-  description: string;
 
   @Field(() => Number)
   status: number;

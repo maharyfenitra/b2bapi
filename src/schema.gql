@@ -10,51 +10,7 @@ type UserModele {
   type: String
 }
 
-type DetailsOrderModele {
-  order_id: Int!
-  item_id: String!
-  quantity: Float!
-}
-
-type OrderModele {
-  id: Int!
-  num: String!
-  client_id: Float!
-  details: [DetailsOrderModele!]!
-  date: DateTime!
-}
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
-type Invoice {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-type Delivery {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-type Payment {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
 type Accounting {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-type Item {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-type Devise {
   """Example field (placeholder)"""
   exampleField: Int!
 }
@@ -64,17 +20,75 @@ type Traduction {
   exampleField: Int!
 }
 
+type Currency {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Delivery {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Payement {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Item {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type OrderEntity {
+  id: String!
+  client_id: String!
+  provider_id: String!
+
+  """Order reference"""
+  reference: String!
+
+  """Order description"""
+  description: String!
+  status: Float!
+  date: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type OrderDetailsEntity {
+  id: String!
+  item_id: String!
+  label: String!
+  qty: Float!
+  price: Float!
+}
+
+type Invoice {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 type Query {
   users: [UserModele!]!
   findUser(searchUserData: UserSearchInput!): [UserModele!]!
-  orders: [OrderModele!]!
-  invoice(id: Int!): Invoice!
-  delivery(id: Int!): Delivery!
-  payment(id: Int!): Payment!
   accounting(id: Int!): Accounting!
-  item(id: Int!): Item!
-  devise(id: Int!): Devise!
   traduction(id: Int!): Traduction!
+  currencies: [Currency!]!
+  currency(id: Int!): Currency!
+  deliveries: [Delivery!]!
+  delivery(id: Int!): Delivery!
+  payements: [Payement!]!
+  payement(id: Int!): Payement!
+  items: [Item!]!
+  item(id: Int!): Item!
+  orders: [OrderEntity!]!
+  findOrder(id: String!): OrderEntity!
+  invoices: [Invoice!]!
+  invoice(id: Int!): Invoice!
 }
 
 input UserSearchInput {
@@ -88,27 +102,31 @@ input UserSearchInput {
 type Mutation {
   create(createUserData: UserInput!): UserModele!
   update(createUserData: UserUpdateInput!): UserModele!
-  createInvoice(createInvoiceInput: CreateInvoiceInput!): Invoice!
-  updateInvoice(updateInvoiceInput: UpdateInvoiceInput!): Invoice!
-  removeInvoice(id: Int!): Invoice!
-  createDelivery(createDeliveryInput: CreateDeliveryInput!): Delivery!
-  updateDelivery(updateDeliveryInput: UpdateDeliveryInput!): Delivery!
-  removeDelivery(id: Int!): Delivery!
-  createPayment(createPaymentInput: CreatePaymentInput!): Payment!
-  updatePayment(updatePaymentInput: UpdatePaymentInput!): Payment!
-  removePayment(id: Int!): Payment!
   createAccounting(createAccountingInput: CreateAccountingInput!): Accounting!
   updateAccounting(updateAccountingInput: UpdateAccountingInput!): Accounting!
   removeAccounting(id: Int!): Accounting!
-  createItem(createItemInput: CreateItemInput!): Item!
-  updateItem(updateItemInput: UpdateItemInput!): Item!
-  removeItem(id: Int!): Item!
-  createDevise(createDeviseInput: CreateDeviseInput!): Devise!
-  updateDevise(updateDeviseInput: UpdateDeviseInput!): Devise!
-  removeDevise(id: Int!): Devise!
   createTraduction(createTraductionInput: CreateTraductionInput!): Traduction!
   updateTraduction(updateTraductionInput: UpdateTraductionInput!): Traduction!
   removeTraduction(id: Int!): Traduction!
+  createCurrency(createCurrencyInput: CreateCurrencyInput!): Currency!
+  updateCurrency(updateCurrencyInput: UpdateCurrencyInput!): Currency!
+  removeCurrency(id: Int!): Currency!
+  createDelivery(createDeliveryInput: CreateDeliveryInput!): Delivery!
+  updateDelivery(updateDeliveryInput: UpdateDeliveryInput!): Delivery!
+  removeDelivery(id: Int!): Delivery!
+  createPayement(createPayementInput: CreatePayementInput!): Payement!
+  updatePayement(updatePayementInput: UpdatePayementInput!): Payement!
+  removePayement(id: Int!): Payement!
+  createItem(createItemInput: CreateItemInput!): Item!
+  updateItem(updateItemInput: UpdateItemInput!): Item!
+  removeItem(id: Int!): Item!
+  createOrder(createOrderInput: CreateOrderInput!): OrderEntity!
+  updateOrder(updateOrderInput: UpdateOrderInput!): Float!
+  removeOrder(id: Int!): OrderEntity!
+  createOrderDetails(orderDetails: CreateOrderDetailsInput!): OrderDetailsEntity!
+  createInvoice(createInvoiceInput: CreateInvoiceInput!): Invoice!
+  updateInvoice(updateInvoiceInput: UpdateInvoiceInput!): Invoice!
+  removeInvoice(id: Int!): Invoice!
 }
 
 input UserInput {
@@ -126,12 +144,34 @@ input UserUpdateInput {
   type: String
 }
 
-input CreateInvoiceInput {
+input CreateAccountingInput {
   """Example field (placeholder)"""
   exampleField: Int!
 }
 
-input UpdateInvoiceInput {
+input UpdateAccountingInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateTraductionInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateTraductionInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateCurrencyInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateCurrencyInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
@@ -148,23 +188,12 @@ input UpdateDeliveryInput {
   id: Int!
 }
 
-input CreatePaymentInput {
+input CreatePayementInput {
   """Example field (placeholder)"""
   exampleField: Int!
 }
 
-input UpdatePaymentInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
-}
-
-input CreateAccountingInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateAccountingInput {
+input UpdatePayementInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
@@ -181,23 +210,45 @@ input UpdateItemInput {
   id: Int!
 }
 
-input CreateDeviseInput {
+input CreateOrderInput {
+  client_id: String!
+  provider_id: String!
+  status: Float
+
+  """Order reference"""
+  reference: String!
+  date: DateTime!
+}
+
+input UpdateOrderInput {
+  client_id: String
+  provider_id: String
+  status: Float
+
+  """Order reference"""
+  reference: String
+  date: DateTime
+  id: String!
+}
+
+input CreateOrderDetailsInput {
+  order_id: String!
+  orderDetailsInput: [OrderDetailsInput!]!
+}
+
+input OrderDetailsInput {
+  item_id: String!
+  label: String!
+  qty: Float!
+  price: Float!
+}
+
+input CreateInvoiceInput {
   """Example field (placeholder)"""
   exampleField: Int!
 }
 
-input UpdateDeviseInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
-}
-
-input CreateTraductionInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateTraductionInput {
+input UpdateInvoiceInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
