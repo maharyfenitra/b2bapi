@@ -1,9 +1,9 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
 
 @ObjectType()
 export class OrderEntity {
   @Field()
-  id: string;
+  id?: string;
 
   @Field()
   client_id: string;
@@ -20,6 +20,6 @@ export class OrderEntity {
   @Field(() => Number)
   status: number;
 
-  @Field()
-  date: Date;
+  @Field(() => Date)
+  date: Date | any;
 }

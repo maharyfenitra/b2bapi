@@ -5,16 +5,18 @@ import { CreateOrderInput } from './dto/create-order.input';
 import { UpdateOrderInput } from './dto/update-order.input';
 import { OrderDetailsService } from './services/order-details.service';
 import { OrderDetailsEntity } from './entities/order-details.entity';
-import { OrderDetailsInput } from './dto/order-details.input';
 import { CreateOrderDetailsInput } from './dto/create-order-details.input';
 
 @Resolver(() => OrderEntity)
 export class OrdersResolver {
-  constructor(private readonly ordersService: OrdersService, private readonly orderDetailsService: OrderDetailsService) { }
+  constructor(
+    private readonly ordersService: OrdersService,
+    private readonly orderDetailsService: OrderDetailsService,
+  ) {}
 
   @Mutation(() => OrderEntity)
   createOrder(@Args('createOrderInput') createOrderInput: CreateOrderInput) {
-    console.log(createOrderInput)
+    console.log(createOrderInput);
     return this.ordersService.create(createOrderInput);
   }
 
@@ -28,7 +30,7 @@ export class OrdersResolver {
     return this.ordersService.findOne(id);
   }
 
-  @Mutation(() => Number)
+  @Mutation(() => OrderEntity)
   updateOrder(@Args('updateOrderInput') updateOrderInput: UpdateOrderInput) {
     console.log(updateOrderInput);
     return this.ordersService.update(updateOrderInput.id, updateOrderInput);
@@ -39,10 +41,11 @@ export class OrdersResolver {
     return this.ordersService.remove(id);
   }
 
-  @Mutation(() => OrderDetailsEntity)
-  createOrderDetails(@Args("orderDetails") orderDetails: CreateOrderDetailsInput) {
-    return {
-
-    }
+  @Mutation(() => [OrderDetailsEntity])
+  async createOrderDetails(
+    @Args('orderDetails') orderDetails: CreateOrderDetailsInput,
+  ) {
+    const res = await this.orderDetailsService.createOrderDetails(orderDetails);
+    return res;
   }
 }
