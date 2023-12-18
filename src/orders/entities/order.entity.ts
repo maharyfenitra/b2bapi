@@ -5,11 +5,11 @@ export class OrderEntity {
   @Field()
   id?: string;
 
-  @Field()
-  client_id: string;
+  @Field(() => String, { description: 'Client id' })
+  clientId: string;
 
-  @Field()
-  provider_id: string;
+  @Field(() => String, { description: 'Provider id' })
+  providerId: string;
 
   @Field(() => String, { description: 'Order reference' })
   reference: string;
@@ -21,5 +21,8 @@ export class OrderEntity {
   status: number;
 
   @Field(() => Date)
-  date: Date | any;
+  createdDate: Date | any;
+
+  @Field(() => Date, { nullable: true })
+  updateAt?: Date | any;
 }

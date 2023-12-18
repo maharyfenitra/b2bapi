@@ -19,7 +19,7 @@ export class OrderDetailsService {
       details.orderDetailsInput.map((element) => {
         return {
           ...element,
-          order_id: details.order_id,
+          orderId: details.orderId,
         };
       }),
     );

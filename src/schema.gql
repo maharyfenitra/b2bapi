@@ -42,8 +42,12 @@ type Item {
 
 type OrderEntity {
   id: String!
-  client_id: String!
-  provider_id: String!
+
+  """Client id"""
+  clientId: String!
+
+  """Provider id"""
+  providerId: String!
 
   """Order reference"""
   reference: String!
@@ -51,7 +55,8 @@ type OrderEntity {
   """Order description"""
   description: String!
   status: Float!
-  date: DateTime!
+  createdDate: DateTime!
+  updateAt: DateTime
 }
 
 """
@@ -61,10 +66,21 @@ scalar DateTime
 
 type OrderDetailsEntity {
   id: String
-  item_id: String!
+
+  """item id"""
+  itemId: String!
+
+  """label of item"""
   label: String!
+
+  """Quantity of item to buy"""
   qty: Float!
+
+  """price of item"""
   price: Float!
+  status: Float!
+  createdDate: DateTime
+  updateAt: DateTime!
 }
 
 type Invoice {
@@ -85,7 +101,7 @@ type Query {
   payement(id: Int!): Payement!
   items: [Item!]!
   item(id: Int!): Item!
-  orders: [OrderEntity!]!
+  findAllOrders: [OrderEntity!]!
   findOrder(id: String!): OrderEntity!
   invoices: [Invoice!]!
   invoice(id: Int!): Invoice!
@@ -211,33 +227,33 @@ input UpdateItemInput {
 }
 
 input CreateOrderInput {
-  client_id: String!
-  provider_id: String!
+  clientId: String!
+  providerId: String!
   status: Float
 
   """Order reference"""
   reference: String!
-  date: DateTime!
+  createdDate: DateTime
 }
 
 input UpdateOrderInput {
-  client_id: String
-  provider_id: String
+  clientId: String
+  providerId: String
   status: Float
 
   """Order reference"""
   reference: String
-  date: DateTime
+  createdDate: DateTime
   id: String!
 }
 
 input CreateOrderDetailsInput {
-  order_id: String!
+  orderId: String!
   orderDetailsInput: [OrderDetailsInput!]!
 }
 
 input OrderDetailsInput {
-  item_id: String!
+  itemId: String!
   label: String!
   qty: Float!
   price: Float!

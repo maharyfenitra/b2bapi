@@ -3,10 +3,10 @@ import { InputType, Field } from '@nestjs/graphql';
 @InputType()
 export class CreateOrderInput {
   @Field(() => String)
-  client_id: string;
+  clientId: string;
 
   @Field(() => String)
-  provider_id: string;
+  providerId: string;
 
   @Field({ nullable: true })
   status: number;
@@ -14,6 +14,6 @@ export class CreateOrderInput {
   @Field(() => String, { description: 'Order reference' })
   reference: string;
 
-  @Field()
-  date: Date;
+  @Field(() => Date, { nullable: true })
+  createdDate?: Date;
 }

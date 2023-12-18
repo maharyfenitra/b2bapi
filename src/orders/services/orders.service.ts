@@ -15,8 +15,8 @@ export class OrdersService {
     return response;
   }
 
-  findAll() {
-    return `This action returns all orders`;
+  async findAll(): Promise<OrderEntity[]> {
+    return await this.orderModel.find();
   }
 
   async findOne(id: string) {

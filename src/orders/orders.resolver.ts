@@ -20,7 +20,7 @@ export class OrdersResolver {
     return this.ordersService.create(createOrderInput);
   }
 
-  @Query(() => [OrderEntity], { name: 'orders' })
+  @Query(() => [OrderEntity], { name: 'findAllOrders' })
   findAll() {
     return this.ordersService.findAll();
   }
@@ -32,7 +32,6 @@ export class OrdersResolver {
 
   @Mutation(() => OrderEntity)
   updateOrder(@Args('updateOrderInput') updateOrderInput: UpdateOrderInput) {
-    console.log(updateOrderInput);
     return this.ordersService.update(updateOrderInput.id, updateOrderInput);
   }
 
