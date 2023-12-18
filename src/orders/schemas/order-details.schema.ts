@@ -6,10 +6,10 @@ export type OrderDetailDocument = HydratedDocument<OrderDetails>;
 @Schema({ timestamps: true })
 export class OrderDetails {
   @Prop({ type: String })
-  order_id: string;
+  orderId: string;
 
   @Prop({ required: true })
-  item_id: string;
+  itemId: string;
 
   @Prop({ type: String, required: true })
   label: string;
@@ -19,6 +19,9 @@ export class OrderDetails {
 
   @Prop({ default: 1 })
   status: number;
+
+  @Prop({ type: Date, default: Date.now })
+  createdDate: Date;
 }
 
 export const OrderDetailsSchema = SchemaFactory.createForClass(OrderDetails);

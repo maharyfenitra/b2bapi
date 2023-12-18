@@ -5,15 +5,24 @@ export class OrderDetailsEntity {
   @Field(() => String, { nullable: true })
   id?: string;
 
-  @Field(() => String)
-  item_id: string;
+  @Field(() => String, { description: 'item id' })
+  itemId: string;
 
-  @Field(() => String)
+  @Field(() => String, { description: 'label of item' })
   label: string;
 
-  @Field(() => Number)
+  @Field(() => Number, { description: 'Quantity of item to buy' })
   qty: number;
 
-  @Field(() => Number)
+  @Field(() => Number, { description: 'price of item' })
   price: number;
+
+  @Field(() => Number)
+  status: number;
+
+  @Field(() => Date, { nullable: true })
+  createdDate: Date | any;
+
+  @Field(() => Date)
+  updateAt?: Date | any;
 }

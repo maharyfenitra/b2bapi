@@ -4,7 +4,7 @@ import { OrderDetailsInput } from './order-details.input';
 @InputType()
 export class CreateOrderDetailsInput {
   @Field(() => String)
-  order_id: string;
+  orderId: string;
 
   @Field(() => [OrderDetailsInput])
   orderDetailsInput: OrderDetailsInput[];

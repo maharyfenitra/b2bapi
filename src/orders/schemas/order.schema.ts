@@ -6,10 +6,10 @@ export type OrderDocument = HydratedDocument<Order>;
 @Schema({ timestamps: true })
 export class Order {
   @Prop({ type: String })
-  client_id: string;
+  clientId: string;
 
   @Prop()
-  provider_id: string;
+  providerId: string;
 
   @Prop({ type: String, required: true })
   reference: string;
@@ -24,7 +24,7 @@ export class Order {
   date: Date;
 
   @Prop({ type: Date, default: Date.now })
-  created_date: Date;
+  createdDate: Date;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);
