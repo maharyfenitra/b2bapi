@@ -1,14 +1,19 @@
 import { Model } from 'mongoose';
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateOrderInput } from '../dto/create-order.input';
 import { UpdateOrderInput } from '../dto/update-order.input';
 import { Order } from '../schemas/order.schema';
 import { OrderEntity } from '../entities/order.entity';
+import { CreateOrderDetailsInput } from '../dto/create-order-details.input';
+import { OrderDetailsService } from './order-details.service';
 
 @Injectable()
 export class OrdersService {
-  constructor(@InjectModel(Order.name) private orderModel: Model<Order>) {}
+  constructor(
+    @InjectModel(Order.name) private orderModel: Model<Order>,
+    private orderDetailsService: OrderDetailsService,
+  ) {}
 
   async create(createOrderInput: CreateOrderInput): Promise<OrderEntity> {
     const response = await new this.orderModel(createOrderInput).save();
@@ -37,5 +42,29 @@ export class OrdersService {
       .findOneAndUpdate({ _id: id }, { status })
       .exec();
     return { ...response, status, id: response._id };
+  }
+
+  async updateOrderDetails(orderDetails: CreateOrderDetailsInput) {
+    const responses = orderDetails.orderDetailsInput.map(async (detail) => {
+      //If id is not define that mean we should create a new line
+      if (!detail.id) {
+        const response = await this.orderDetailsService.createOrderDetails({
+          orderId: orderDetails.orderId,
+          orderDetailsInput: [detail],
+        });
+
+        //If every thing is OK we should get only one line in response overwise somehing get wrong
+        if (!response[0]) {
+          throw new HttpException(
+            'Error when creation details',
+            HttpStatus.EXPECTATION_FAILED,
+          );
+        }
+        return response[0];
+      }
+      return await this.orderDetailsService.updateOrderDetails(detail);
+    });
+
+    return responses;
   }
 }

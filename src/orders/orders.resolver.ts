@@ -47,4 +47,12 @@ export class OrdersResolver {
     const res = await this.orderDetailsService.createOrderDetails(orderDetails);
     return res;
   }
+
+  @Mutation(() => [OrderDetailsEntity])
+  async updateOrderDetails(
+    @Args('orderDetails') orderDetails: CreateOrderDetailsInput,
+  ) {
+    const res = await this.ordersService.updateOrderDetails(orderDetails);
+    return res;
+  }
 }

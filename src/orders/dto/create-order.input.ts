@@ -14,6 +14,9 @@ export class CreateOrderInput {
   @Field(() => String, { description: 'Order reference' })
   reference: string;
 
+  @Field(() => String, { description: 'Order description' })
+  description?: string;
+
   @Field(() => Date, { nullable: true })
   createdDate?: Date;
 }
