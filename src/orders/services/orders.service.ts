@@ -26,12 +26,16 @@ export class OrdersService {
 
   async update(id: string, updateOrderInput: UpdateOrderInput) {
     const response = await this.orderModel
-      .updateOne({ _id: id }, { ...updateOrderInput })
+      .findOneAndUpdate({ _id: id }, { ...updateOrderInput })
       .exec();
-    return response;
+    return { ...response, ...updateOrderInput };
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} order`;
+  async remove(id: string) {
+    const status = 0;
+    const response = await this.orderModel
+      .findOneAndUpdate({ _id: id }, { status })
+      .exec();
+    return { ...response, status, id: response._id };
   }
 }
