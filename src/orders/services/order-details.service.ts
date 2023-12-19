@@ -1,9 +1,10 @@
 import { Model } from 'mongoose';
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { OrderDetails } from '../schemas/order-details.schema';
 import { CreateOrderDetailsInput } from '../dto/create-order-details.input';
 import { OrderDetailsEntity } from '../entities/order-details.entity';
+import { OrderDetailsInput } from '../dto/order-details.input';
 
 @Injectable()
 export class OrderDetailsService {
@@ -23,5 +24,24 @@ export class OrderDetailsService {
         };
       }),
     );
+  }
+
+  async updateOrderDetails(
+    details: OrderDetailsInput,
+  ): Promise<OrderDetailsEntity> {
+    if (!details.id) {
+      throw new HttpException(
+        'Id is required for updating details order line',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    const response = await this.orderDetailsModel.findOneAndUpdate(
+      { _id: details.id },
+      { ...details },
+    );
+    return {
+      ...response,
+      ...details,
+    };
   }
 }

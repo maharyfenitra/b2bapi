@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { OrdersService } from './services/orders.service';
 import { OrderEntity } from './entities/order.entity';
 import { CreateOrderInput } from './dto/create-order.input';
@@ -36,7 +36,7 @@ export class OrdersResolver {
   }
 
   @Mutation(() => OrderEntity)
-  removeOrder(@Args('id', { type: () => Int }) id: number) {
+  removeOrder(@Args('id', { type: () => String }) id: string) {
     return this.ordersService.remove(id);
   }
 

@@ -138,7 +138,7 @@ type Mutation {
   removeItem(id: Int!): Item!
   createOrder(createOrderInput: CreateOrderInput!): OrderEntity!
   updateOrder(updateOrderInput: UpdateOrderInput!): OrderEntity!
-  removeOrder(id: Int!): OrderEntity!
+  removeOrder(id: String!): OrderEntity!
   createOrderDetails(orderDetails: CreateOrderDetailsInput!): [OrderDetailsEntity!]!
   createInvoice(createInvoiceInput: CreateInvoiceInput!): Invoice!
   updateInvoice(updateInvoiceInput: UpdateInvoiceInput!): Invoice!
@@ -253,6 +253,7 @@ input CreateOrderDetailsInput {
 }
 
 input OrderDetailsInput {
+  id: String!
   itemId: String!
   label: String!
   qty: Float!
