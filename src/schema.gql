@@ -55,7 +55,7 @@ type OrderEntity {
   """Order description"""
   description: String!
   status: Float!
-  createdDate: DateTime!
+  createdAt: DateTime!
   updateAt: DateTime
 }
 
@@ -79,8 +79,8 @@ type OrderDetailsEntity {
   """price of item"""
   price: Float!
   status: Float!
-  createdDate: DateTime
-  updateAt: DateTime!
+  createdAt: DateTime
+  updateAt: DateTime
 }
 
 type Invoice {
@@ -140,6 +140,7 @@ type Mutation {
   updateOrder(updateOrderInput: UpdateOrderInput!): OrderEntity!
   removeOrder(id: String!): OrderEntity!
   createOrderDetails(orderDetails: CreateOrderDetailsInput!): [OrderDetailsEntity!]!
+  updateOrderDetails(orderDetails: CreateOrderDetailsInput!): [OrderDetailsEntity!]!
   createInvoice(createInvoiceInput: CreateInvoiceInput!): Invoice!
   updateInvoice(updateInvoiceInput: UpdateInvoiceInput!): Invoice!
   removeInvoice(id: Int!): Invoice!
@@ -233,6 +234,9 @@ input CreateOrderInput {
 
   """Order reference"""
   reference: String!
+
+  """Order description"""
+  description: String!
   createdDate: DateTime
 }
 
@@ -243,6 +247,9 @@ input UpdateOrderInput {
 
   """Order reference"""
   reference: String
+
+  """Order description"""
+  description: String
   createdDate: DateTime
   id: String!
 }
@@ -253,7 +260,7 @@ input CreateOrderDetailsInput {
 }
 
 input OrderDetailsInput {
-  id: String!
+  id: String
   itemId: String!
   label: String!
   qty: Float!

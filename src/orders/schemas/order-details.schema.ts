@@ -1,12 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import * as mongoose from 'mongoose';
+import { Order } from './order.schema';
 
 export type OrderDetailDocument = HydratedDocument<OrderDetails>;
 
 @Schema({ timestamps: true })
 export class OrderDetails {
-  @Prop({ type: String })
-  orderId: string;
+  @Prop({ type: mongoose.Types.ObjectId, ref: 'Order' })
+  orderId: Order;
 
   @Prop({ required: true })
   itemId: string;
@@ -19,9 +21,6 @@ export class OrderDetails {
 
   @Prop({ default: 1 })
   status: number;
-
-  @Prop({ type: Date, default: Date.now })
-  createdDate: Date;
 }
 
 export const OrderDetailsSchema = SchemaFactory.createForClass(OrderDetails);

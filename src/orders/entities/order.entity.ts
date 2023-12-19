@@ -21,7 +21,7 @@ export class OrderEntity {
   status: number;
 
   @Field(() => Date)
-  createdDate: Date | any;
+  createdAt?: Date | any;
 
   @Field(() => Date, { nullable: true })
   updateAt?: Date | any;
