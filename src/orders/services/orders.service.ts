@@ -62,7 +62,10 @@ export class OrdersService {
         }
         return response[0];
       }
-      return await this.orderDetailsService.updateOrderDetails(detail);
+      return await this.orderDetailsService.updateOrderDetails(
+        orderDetails.orderId,
+        detail,
+      );
     });
 
     return responses;
