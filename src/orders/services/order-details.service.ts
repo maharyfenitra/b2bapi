@@ -27,6 +27,7 @@ export class OrderDetailsService {
   }
 
   async updateOrderDetails(
+    orderId: string,
     details: OrderDetailsInput,
   ): Promise<OrderDetailsEntity> {
     if (!details.id) {
@@ -36,7 +37,7 @@ export class OrderDetailsService {
       );
     }
     const response = await this.orderDetailsModel.findOneAndUpdate(
-      { _id: details.id },
+      { _id: details.id, orderId },
       { ...details },
     );
     return {
