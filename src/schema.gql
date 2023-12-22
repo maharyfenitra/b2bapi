@@ -20,9 +20,24 @@ type Traduction {
   exampleField: Int!
 }
 
-type Currency {
-  """Example field (placeholder)"""
-  exampleField: Int!
+type CurrencyEntity {
+  """Item id"""
+  id: String!
+
+  """Currency label"""
+  symbol: String!
+
+  """Iso Code"""
+  isoCode: String!
+
+  """Currency label"""
+  label: String!
+
+  """Currency description"""
+  description: String!
+
+  """id of the user who created the currency"""
+  userId: String!
 }
 
 type Delivery {
@@ -109,8 +124,8 @@ type Query {
   findUser(searchUserData: UserSearchInput!): [UserModele!]!
   accounting(id: Int!): Accounting!
   traduction(id: Int!): Traduction!
-  currencies: [Currency!]!
-  currency(id: Int!): Currency!
+  currencies: [CurrencyEntity!]!
+  currency(id: Int!): CurrencyEntity!
   deliveries: [Delivery!]!
   delivery(id: Int!): Delivery!
   payements: [Payement!]!
@@ -140,9 +155,9 @@ type Mutation {
   createTraduction(createTraductionInput: CreateTraductionInput!): Traduction!
   updateTraduction(updateTraductionInput: UpdateTraductionInput!): Traduction!
   removeTraduction(id: Int!): Traduction!
-  createCurrency(createCurrencyInput: CreateCurrencyInput!): Currency!
-  updateCurrency(updateCurrencyInput: UpdateCurrencyInput!): Currency!
-  removeCurrency(id: Int!): Currency!
+  createCurrency(createCurrencyInput: CreateCurrencyInput!): CurrencyEntity!
+  updateCurrency(updateCurrencyInput: UpdateCurrencyInput!): CurrencyEntity!
+  removeCurrency(id: Int!): CurrencyEntity!
   createDelivery(createDeliveryInput: CreateDeliveryInput!): Delivery!
   updateDelivery(updateDeliveryInput: UpdateDeliveryInput!): Delivery!
   removeDelivery(id: Int!): Delivery!
@@ -200,14 +215,52 @@ input UpdateTraductionInput {
 }
 
 input CreateCurrencyInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """Currency label"""
+  symbol: String!
+
+  """Iso Code"""
+  isoCode: String!
+
+  """Currency label"""
+  label: String!
+
+  """Currency description"""
+  description: String!
+
+  """id of the user who created the currency"""
+  userId: String!
+
+  """Date of creation of the currency"""
+  createdAt: DateTime!
+
+  """Date of the last update"""
+  updateAt: DateTime
 }
 
 input UpdateCurrencyInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  """Currency label"""
+  symbol: String!
+
+  """Iso Code"""
+  isoCode: String!
+
+  """Currency label"""
+  label: String!
+
+  """Currency description"""
+  description: String!
+
+  """id of the user who created the currency"""
+  userId: String
+
+  """Date of creation of the currency"""
+  createdAt: DateTime
+
+  """Date of the last update"""
+  updateAt: DateTime
+
+  """Item id"""
+  id: String!
 }
 
 input CreateDeliveryInput {
