@@ -1,23 +1,42 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCurrencyInput } from './dto/create-currency.input';
 import { UpdateCurrencyInput } from './dto/update-currency.input';
-
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { Currency } from './schemas/currency.chema';
+import { CurrencyEntity } from './entities/currency.entity';
 @Injectable()
 export class CurrenciesService {
-  create(createCurrencyInput: CreateCurrencyInput) {
-    return 'This action adds a new currency';
+  constructor(
+    @InjectModel(Currency.name) private currencyModel: Model<Currency>,
+  ) {}
+
+  async create(
+    createCurrencyInput: CreateCurrencyInput,
+  ): Promise<CurrencyEntity> {
+    return await new this.currencyModel(createCurrencyInput).save();
   }
 
-  findAll() {
-    return `This action returns all currencies`;
+  async findAll(): Promise<CurrencyEntity[]> {
+    return await this.currencyModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} currency`;
+  async findOne(id: string): Promise<CurrencyEntity> {
+    return await this.currencyModel.findOne({ _id: id }).exec();
   }
 
-  update(id: number, updateCurrencyInput: UpdateCurrencyInput) {
-    return `This action updates a #${id} currency`;
+  async update(
+    id: string,
+    updateCurrencyInput: UpdateCurrencyInput,
+  ): Promise<CurrencyEntity> {
+    const response = await this.currencyModel.findByIdAndUpdate(
+      { _id: id },
+      updateCurrencyInput,
+    );
+    return {
+      ...response,
+      ...updateCurrencyInput,
+    };
   }
 
   remove(id: number) {

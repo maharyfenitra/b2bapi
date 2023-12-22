@@ -9,7 +9,9 @@ export class InvoicesResolver {
   constructor(private readonly invoicesService: InvoicesService) {}
 
   @Mutation(() => Invoice)
-  createInvoice(@Args('createInvoiceInput') createInvoiceInput: CreateInvoiceInput) {
+  createInvoice(
+    @Args('createInvoiceInput') createInvoiceInput: CreateInvoiceInput,
+  ) {
     return this.invoicesService.create(createInvoiceInput);
   }
 
@@ -24,8 +26,13 @@ export class InvoicesResolver {
   }
 
   @Mutation(() => Invoice)
-  updateInvoice(@Args('updateInvoiceInput') updateInvoiceInput: UpdateInvoiceInput) {
-    return this.invoicesService.update(updateInvoiceInput.id, updateInvoiceInput);
+  updateInvoice(
+    @Args('updateInvoiceInput') updateInvoiceInput: UpdateInvoiceInput,
+  ) {
+    return this.invoicesService.update(
+      updateInvoiceInput.id,
+      updateInvoiceInput,
+    );
   }
 
   @Mutation(() => Invoice)
