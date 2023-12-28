@@ -9,7 +9,9 @@ export class TranslationsResolver {
   constructor(private readonly traductionService: TranslationsService) {}
 
   @Mutation(() => Traduction)
-  createTraduction(@Args('createTraductionInput') createTraductionInput: CreateTraductionInput) {
+  createTraduction(
+    @Args('createTraductionInput') createTraductionInput: CreateTraductionInput,
+  ) {
     return this.traductionService.create(createTraductionInput);
   }
 
@@ -19,17 +21,22 @@ export class TranslationsResolver {
   }
 
   @Query(() => Traduction, { name: 'traduction' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => Int }) id: string) {
     return this.traductionService.findOne(id);
   }
 
   @Mutation(() => Traduction)
-  updateTraduction(@Args('updateTraductionInput') updateTraductionInput: UpdateTraductionInput) {
-    return this.traductionService.update(updateTraductionInput.id, updateTraductionInput);
+  updateTraduction(
+    @Args('updateTraductionInput') updateTraductionInput: UpdateTraductionInput,
+  ) {
+    return this.traductionService.update(
+      updateTraductionInput.id,
+      updateTraductionInput,
+    );
   }
 
   @Mutation(() => Traduction)
-  removeTraduction(@Args('id', { type: () => Int }) id: number) {
+  removeTraduction(@Args('id', { type: () => Int }) id: string) {
     return this.traductionService.remove(id);
   }
 }

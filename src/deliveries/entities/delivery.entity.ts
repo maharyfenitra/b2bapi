@@ -1,7 +1,32 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
+import { DeliveryDetailsEntity } from './delivery-details.entity';
 
 @ObjectType()
-export class Delivery {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+export class DeliveryEntity {
+  @Field(() => String, { description: 'Client id' })
+  customerId: string;
+
+  @Field(() => String, { description: 'Provider Id' })
+  providerId: string;
+
+  @Field(() => String, { description: 'Reference of the delivery' })
+  reference: string;
+
+  @Field(() => String, { description: 'Delivery description' })
+  description: string;
+
+  @Field(() => String, { description: 'Example field (placeholder)' })
+  deliveryDetails: DeliveryDetailsEntity[];
+
+  @Field(() => String, { description: 'Adress delivery' })
+  adressDelivery: string;
+
+  @Field(() => String, { description: 'Country delivery' })
+  countryDelivery: string;
+
+  @Field(() => Number, {
+    description: 'Status of the delivery',
+    nullable: true,
+  })
+  status?: number;
 }

@@ -21,22 +21,24 @@ export class CurrenciesResolver {
   }
 
   @Query(() => CurrencyEntity, { name: 'currency' })
-  findOne(@Args('id', { type: () => Int }) id: string) {
-    return this.currenciesService.findOne(id);
+  async findOne(
+    @Args('id', { type: () => Int }) id: string,
+  ): Promise<CurrencyEntity> {
+    return await this.currenciesService.findOne(id);
   }
 
   @Mutation(() => CurrencyEntity)
-  updateCurrency(
+  async updateCurrency(
     @Args('updateCurrencyInput') updateCurrencyInput: UpdateCurrencyInput,
-  ) {
-    return this.currenciesService.update(
+  ): Promise<CurrencyEntity> {
+    return await this.currenciesService.update(
       updateCurrencyInput.id,
       updateCurrencyInput,
     );
   }
 
   @Mutation(() => CurrencyEntity)
-  removeCurrency(@Args('id', { type: () => Int }) id: number) {
+  removeCurrency(@Args('id', { type: () => Int }) id: string) {
     return this.currenciesService.remove(id);
   }
 }
