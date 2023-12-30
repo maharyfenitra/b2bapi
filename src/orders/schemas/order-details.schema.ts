@@ -8,7 +8,7 @@ export type OrderDetailDocument = HydratedDocument<OrderDetails>;
 @Schema({ timestamps: true })
 export class OrderDetails {
   @Prop({
-    type: mongoose.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Order',
     required: true,
     checkRequired: true,

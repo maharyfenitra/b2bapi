@@ -39,7 +39,7 @@ export class CurrenciesService {
     };
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} currency`;
   }
 }

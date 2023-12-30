@@ -1,4 +1,4 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class CurrencyEntity {
@@ -16,6 +16,9 @@ export class CurrencyEntity {
 
   @Field(() => String, { description: 'Currency description' })
   description: string;
+
+  @Field(() => Int)
+  status: number;
 
   @Field(() => String, {
     description: 'id of the user who created the currency',
