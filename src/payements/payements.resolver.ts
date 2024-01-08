@@ -9,7 +9,9 @@ export class PayementsResolver {
   constructor(private readonly payementsService: PayementsService) {}
 
   @Mutation(() => Payement)
-  createPayement(@Args('createPayementInput') createPayementInput: CreatePayementInput) {
+  createPayement(
+    @Args('createPayementInput') createPayementInput: CreatePayementInput,
+  ) {
     return this.payementsService.create(createPayementInput);
   }
 
@@ -24,8 +26,13 @@ export class PayementsResolver {
   }
 
   @Mutation(() => Payement)
-  updatePayement(@Args('updatePayementInput') updatePayementInput: UpdatePayementInput) {
-    return this.payementsService.update(updatePayementInput.id, updatePayementInput);
+  updatePayement(
+    @Args('updatePayementInput') updatePayementInput: UpdatePayementInput,
+  ) {
+    return this.payementsService.update(
+      updatePayementInput.id,
+      updatePayementInput,
+    );
   }
 
   @Mutation(() => Payement)
