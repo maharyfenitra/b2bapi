@@ -39,7 +39,15 @@ export class CurrenciesService {
     };
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} currency`;
+  async remove(id: string): Promise<CurrencyEntity> {
+    const status = 0;
+    const response = await this.currencyModel.findByIdAndUpdate(
+      { _id: id },
+      { status },
+    );
+    return {
+      ...response,
+      status,
+    };
   }
 }

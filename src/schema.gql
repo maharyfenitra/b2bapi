@@ -164,7 +164,7 @@ type Query {
   delivery(id: Int!): DeliveryEntity!
   payements: [Payement!]!
   payement(id: Int!): Payement!
-  items: [ItemEntity!]!
+  findAllitems: [ItemEntity!]!
   item(id: Int!): ItemEntity!
   findAllOrders: [OrderEntity!]!
   findOrder(id: String!): OrderEntity!
