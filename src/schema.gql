@@ -189,9 +189,39 @@ type SupplierEntity {
   nif: String!
 }
 
-type Customer {
-  """Example field (placeholder)"""
-  exampleField: Int!
+type CustomerEntity {
+  """Supplier contact fisrt name"""
+  id: String!
+
+  """Supplier contact fisrt name"""
+  firstName: String!
+
+  """Supplier contact last name"""
+  lastName: String!
+
+  """Supplier name"""
+  name: String!
+
+  """Supplier mail"""
+  mail: String!
+
+  """Supplier description"""
+  description: String!
+
+  """Supplier adress"""
+  adress: String!
+
+  """Supplier city"""
+  city: String!
+
+  """Supplier area"""
+  area: String!
+
+  """Supplier stat"""
+  stat: String!
+
+  """Supplier nif"""
+  nif: String!
 }
 
 type Query {
@@ -212,9 +242,9 @@ type Query {
   invoices: [Invoice!]!
   invoice(id: Int!): Invoice!
   findAllSupplier: [SupplierEntity!]!
-  findOneSupplier(id: Int!): SupplierEntity!
-  customers: [Customer!]!
-  customer(id: Int!): Customer!
+  findOneSupplier(id: String!): SupplierEntity!
+  customers: [CustomerEntity!]!
+  customer(id: String!): CustomerEntity!
 }
 
 input UserSearchInput {
@@ -257,9 +287,9 @@ type Mutation {
   createSupplier(createSupplierInput: CreateSupplierInput!): SupplierEntity!
   updateSupplier(updateSupplierInput: UpdateSupplierInput!): SupplierEntity!
   removeSupplier(id: Int!): SupplierEntity!
-  createCustomer(createCustomerInput: CreateCustomerInput!): Customer!
-  updateCustomer(updateCustomerInput: UpdateCustomerInput!): Customer!
-  removeCustomer(id: Int!): Customer!
+  createCustomer(createCustomerInput: CreateCustomerInput!): CustomerEntity!
+  updateCustomer(updateCustomerInput: UpdateCustomerInput!): CustomerEntity!
+  removeCustomer(id: String!): CustomerEntity!
 }
 
 input UserInput {
@@ -595,12 +625,66 @@ input UpdateSupplierInput {
 }
 
 input CreateCustomerInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """Customer contact fisrt name"""
+  firstName: String!
+
+  """Customer contact last name"""
+  lastName: String!
+
+  """Customer name"""
+  name: String!
+
+  """Customer mail"""
+  mail: String!
+
+  """Customer description"""
+  description: String!
+
+  """Customer adress"""
+  adress: String!
+
+  """Customer city"""
+  city: String!
+
+  """Customer area"""
+  area: String!
+
+  """Customer stat"""
+  stat: String!
+
+  """Customer nif"""
+  nif: String!
 }
 
 input UpdateCustomerInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  """Customer contact fisrt name"""
+  firstName: String
+
+  """Customer contact last name"""
+  lastName: String
+
+  """Customer name"""
+  name: String
+
+  """Customer mail"""
+  mail: String
+
+  """Customer description"""
+  description: String
+
+  """Customer adress"""
+  adress: String
+
+  """Customer city"""
+  city: String
+
+  """Customer area"""
+  area: String
+
+  """Customer stat"""
+  stat: String
+
+  """Customer nif"""
+  nif: String
+  id: String!
 }
