@@ -154,6 +154,46 @@ type Invoice {
   exampleField: Int!
 }
 
+type SupplierEntity {
+  """Supplier contact fisrt name"""
+  id: String!
+
+  """Supplier contact fisrt name"""
+  firstName: String!
+
+  """Supplier contact last name"""
+  lastName: String!
+
+  """Supplier name"""
+  name: String!
+
+  """Supplier mail"""
+  mail: String!
+
+  """Supplier description"""
+  description: String!
+
+  """Supplier adress"""
+  adress: String!
+
+  """Supplier city"""
+  city: String!
+
+  """Supplier area"""
+  area: String!
+
+  """Supplier stat"""
+  stat: String!
+
+  """Supplier nif"""
+  nif: String!
+}
+
+type Customer {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 type Query {
   users: [UserModele!]!
   findUser(searchUserData: UserSearchInput!): [UserModele!]!
@@ -171,6 +211,10 @@ type Query {
   findOrder(id: String!): OrderEntity!
   invoices: [Invoice!]!
   invoice(id: Int!): Invoice!
+  findAllSupplier: [SupplierEntity!]!
+  findOneSupplier(id: Int!): SupplierEntity!
+  customers: [Customer!]!
+  customer(id: Int!): Customer!
 }
 
 input UserSearchInput {
@@ -210,6 +254,12 @@ type Mutation {
   createInvoice(createInvoiceInput: CreateInvoiceInput!): Invoice!
   updateInvoice(updateInvoiceInput: UpdateInvoiceInput!): Invoice!
   removeInvoice(id: Int!): Invoice!
+  createSupplier(createSupplierInput: CreateSupplierInput!): SupplierEntity!
+  updateSupplier(updateSupplierInput: UpdateSupplierInput!): SupplierEntity!
+  removeSupplier(id: Int!): SupplierEntity!
+  createCustomer(createCustomerInput: CreateCustomerInput!): Customer!
+  updateCustomer(updateCustomerInput: UpdateCustomerInput!): Customer!
+  removeCustomer(id: Int!): Customer!
 }
 
 input UserInput {
@@ -474,6 +524,82 @@ input CreateInvoiceInput {
 }
 
 input UpdateInvoiceInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateSupplierInput {
+  """Supplier contact fisrt name"""
+  firstName: String!
+
+  """Supplier contact last name"""
+  lastName: String!
+
+  """Supplier name"""
+  name: String!
+
+  """Supplier mail"""
+  mail: String!
+
+  """Supplier description"""
+  description: String!
+
+  """Supplier adress"""
+  adress: String!
+
+  """Supplier city"""
+  city: String!
+
+  """Supplier area"""
+  area: String!
+
+  """Supplier stat"""
+  stat: String!
+
+  """Supplier nif"""
+  nif: String!
+}
+
+input UpdateSupplierInput {
+  """Supplier contact fisrt name"""
+  firstName: String
+
+  """Supplier contact last name"""
+  lastName: String
+
+  """Supplier name"""
+  name: String
+
+  """Supplier mail"""
+  mail: String
+
+  """Supplier description"""
+  description: String
+
+  """Supplier adress"""
+  adress: String
+
+  """Supplier city"""
+  city: String
+
+  """Supplier area"""
+  area: String
+
+  """Supplier stat"""
+  stat: String
+
+  """Supplier nif"""
+  nif: String
+  id: String!
+}
+
+input CreateCustomerInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateCustomerInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
