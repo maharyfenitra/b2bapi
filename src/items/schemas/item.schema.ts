@@ -11,6 +11,9 @@ export class Item {
   @Prop({ type: String, default: '' })
   description: string;
 
+  @Prop({ type: Number, default: 0 })
+  price: number;
+
   @Prop({ type: String })
   userId: string;
 

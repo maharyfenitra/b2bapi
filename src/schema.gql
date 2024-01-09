@@ -93,6 +93,7 @@ type ItemEntity {
 
   """Item description"""
   description: String!
+  price: Float!
 
   """id of the user who created the item"""
   userId: String!
@@ -405,6 +406,9 @@ input CreateItemInput {
   """Item description"""
   description: String!
 
+  """Item price"""
+  price: Float!
+
   """id of the user who created the item"""
   userId: String!
 }
@@ -415,6 +419,9 @@ input UpdateItemInput {
 
   """Item description"""
   description: String
+
+  """Item price"""
+  price: Float
 
   """id of the user who created the item"""
   userId: String
