@@ -11,6 +11,8 @@ import { PayementsModule } from './payements/payements.module';
 import { ItemsModule } from './items/items.module';
 import { OrdersModule } from './orders/orders.module';
 import { InvoicesModule } from './invoices/invoices.module';
+import { SuppliersModule } from './suppliers/suppliers.module';
+import { CustomersModule } from './customers/customers.module';
 
 @Module({
   imports: [
@@ -20,7 +22,17 @@ import { InvoicesModule } from './invoices/invoices.module';
     }),
     MongooseModule.forRoot('mongodb://localhost/b2b'),
 
-    UsersModule, AccountingModule, TranslationsModule, CurrenciesModule, DeliveriesModule, PayementsModule, ItemsModule, OrdersModule, InvoicesModule],
-
+    UsersModule,
+    AccountingModule,
+    TranslationsModule,
+    CurrenciesModule,
+    DeliveriesModule,
+    PayementsModule,
+    ItemsModule,
+    OrdersModule,
+    InvoicesModule,
+    SuppliersModule,
+    CustomersModule,
+  ],
 })
 export class AppModule {}
