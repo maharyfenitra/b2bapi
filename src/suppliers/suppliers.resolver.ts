@@ -22,7 +22,7 @@ export class SupplierResolver {
 
   @Query(() => SupplierEntity, { name: 'findOneSupplier' })
   async findOne(
-    @Args('id', { type: () => Int }) id: string,
+    @Args('id', { type: () => String }) id: string,
   ): Promise<SupplierEntity> {
     return await this.suppliersService.findOne(id);
   }
