@@ -241,7 +241,7 @@ type Query {
   findOrder(id: String!): OrderEntity!
   invoices: [Invoice!]!
   invoice(id: Int!): Invoice!
-  findAllSupplier: [SupplierEntity!]!
+  findAllSuppliers: [SupplierEntity!]!
   findOneSupplier(id: String!): SupplierEntity!
   customers: [CustomerEntity!]!
   customer(id: String!): CustomerEntity!
