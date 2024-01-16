@@ -1,12 +1,10 @@
 import { ObjectType, Field } from '@nestjs/graphql';
+import { OrderDetailsEntity } from './order-details.entity';
 
 @ObjectType()
 export class OrderEntity {
-  @Field()
+  @Field(() => String, { description: 'Order Id', nullable: true })
   id?: string;
-
-  @Field(() => String, { description: 'Client id' })
-  clientId: string;
 
   @Field(() => String, { description: 'Provider id' })
   providerId: string;
@@ -16,6 +14,9 @@ export class OrderEntity {
 
   @Field(() => String, { description: 'Order description' })
   description: string;
+
+  @Field(() => [OrderDetailsEntity], { description: 'order details' })
+  orderDetailsEntity: OrderDetailsEntity[];
 
   @Field(() => Number)
   status: number;

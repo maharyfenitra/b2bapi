@@ -16,7 +16,6 @@ export class OrdersResolver {
 
   @Mutation(() => OrderEntity)
   createOrder(@Args('createOrderInput') createOrderInput: CreateOrderInput) {
-    console.log(createOrderInput);
     return this.ordersService.create(createOrderInput);
   }
 
