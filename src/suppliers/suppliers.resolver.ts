@@ -15,7 +15,7 @@ export class SupplierResolver {
     return await this.suppliersService.create(createSupplierInput);
   }
 
-  @Query(() => [SupplierEntity], { name: 'findAllSupplier' })
+  @Query(() => [SupplierEntity], { name: 'findAllSuppliers' })
   async findAll(): Promise<SupplierEntity[]> {
     return await this.suppliersService.findAll();
   }

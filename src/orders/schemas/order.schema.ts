@@ -5,9 +5,6 @@ export type OrderDocument = HydratedDocument<Order>;
 
 @Schema({ timestamps: true })
 export class Order {
-  @Prop({ type: String })
-  clientId: string;
-
   @Prop()
   providerId: string;
 

@@ -7,6 +7,7 @@ import { Order } from '../schemas/order.schema';
 import { OrderEntity } from '../entities/order.entity';
 import { CreateOrderDetailsInput } from '../dto/create-order-details.input';
 import { OrderDetailsService } from './order-details.service';
+import { OrderDetailsEntity } from '../entities/order-details.entity';
 
 @Injectable()
 export class OrdersService {
@@ -16,8 +17,24 @@ export class OrdersService {
   ) {}
 
   async create(createOrderInput: CreateOrderInput): Promise<OrderEntity> {
-    const response = await new this.orderModel(createOrderInput).save();
-    return response;
+    const response = await new this.orderModel({
+      providerId: createOrderInput.providerId,
+      reference: createOrderInput.reference,
+      description: createOrderInput.description,
+    }).save();
+
+    const details = this.orderDetailsService.createOrderDetails({
+      orderId: response.id,
+      orderDetailsInput: createOrderInput.orderDetailsInput,
+    });
+
+    return {
+      ...response,
+      id: response.id,
+      reference: response.reference,
+      description: response.description,
+      orderDetailsEntity: details as unknown as OrderDetailsEntity[],
+    };
   }
 
   async findAll(): Promise<OrderEntity[]> {
