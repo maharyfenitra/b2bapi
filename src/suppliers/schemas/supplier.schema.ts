@@ -18,6 +18,9 @@ export class Supplier {
   mail: string;
 
   @Prop({ type: String })
+  phoneNumber: string;
+
+  @Prop({ type: String })
   description: string;
 
   @Prop({ type: String })
@@ -34,6 +37,15 @@ export class Supplier {
 
   @Prop({ type: String })
   nif: string;
+
+  @Prop({ type: String })
+  contactMail: string;
+
+  @Prop({ type: String })
+  contactPhoneNumber: string;
+
+  @Prop({ type: String })
+  contactPost: string;
 
   @Prop({ default: 1 })
   status: number;

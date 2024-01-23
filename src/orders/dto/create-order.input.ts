@@ -4,7 +4,7 @@ import { OrderDetailsInput } from './order-details.input';
 @InputType()
 export class CreateOrderInput {
   @Field(() => String)
-  providerId: string;
+  supplierId: string;
 
   @Field({ nullable: true })
   status: number;

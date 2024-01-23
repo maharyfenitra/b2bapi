@@ -18,7 +18,7 @@ export class OrdersService {
 
   async create(createOrderInput: CreateOrderInput): Promise<OrderEntity> {
     const response = await new this.orderModel({
-      providerId: createOrderInput.providerId,
+      supplierId: createOrderInput.supplierId,
       reference: createOrderInput.reference,
       description: createOrderInput.description,
     }).save();

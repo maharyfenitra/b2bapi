@@ -135,7 +135,7 @@ type OrderEntity {
   id: String
 
   """Provider id"""
-  providerId: String!
+  supplierId: String!
 
   """Order reference"""
   reference: String!
@@ -157,37 +157,49 @@ type Invoice {
 
 type SupplierEntity {
   """Supplier contact fisrt name"""
-  id: String!
+  id: String
 
   """Supplier contact fisrt name"""
-  firstName: String!
+  firstName: String
 
   """Supplier contact last name"""
-  lastName: String!
+  lastName: String
 
   """Supplier name"""
-  name: String!
+  name: String
 
   """Supplier mail"""
-  mail: String!
+  mail: String
+
+  """Company number"""
+  phoneNumber: String
 
   """Supplier description"""
-  description: String!
+  description: String
 
   """Supplier adress"""
-  adress: String!
+  adress: String
 
   """Supplier city"""
-  city: String!
+  city: String
 
   """Supplier area"""
-  area: String!
+  area: String
 
   """Supplier stat"""
-  stat: String!
+  stat: String
 
   """Supplier nif"""
-  nif: String!
+  nif: String
+
+  """Contact Mail"""
+  contactMail: String
+
+  """Contact Phone Number"""
+  contactPhoneNumber: String
+
+  """Contact Post"""
+  contactPost: String
 }
 
 type CustomerEntity {
@@ -510,7 +522,7 @@ input UpdateItemInput {
 }
 
 input CreateOrderInput {
-  providerId: String!
+  supplierId: String!
   status: Float
 
   """Order reference"""
@@ -531,7 +543,7 @@ input OrderDetailsInput {
 }
 
 input UpdateOrderInput {
-  providerId: String
+  supplierId: String
   status: Float
 
   """Order reference"""
@@ -562,16 +574,19 @@ input UpdateInvoiceInput {
 
 input CreateSupplierInput {
   """Supplier contact fisrt name"""
-  firstName: String!
+  firstName: String
 
   """Supplier contact last name"""
-  lastName: String!
+  lastName: String
 
   """Supplier name"""
   name: String!
 
   """Supplier mail"""
-  mail: String!
+  mail: String
+
+  """Company number"""
+  phoneNumber: String
 
   """Supplier description"""
   description: String!
@@ -580,16 +595,25 @@ input CreateSupplierInput {
   adress: String!
 
   """Supplier city"""
-  city: String!
+  city: String
 
   """Supplier area"""
-  area: String!
+  area: String
 
   """Supplier stat"""
-  stat: String!
+  stat: String
 
   """Supplier nif"""
-  nif: String!
+  nif: String
+
+  """Contact Mail"""
+  contactMail: String
+
+  """Contact Phone Number"""
+  contactPhoneNumber: String
+
+  """Contact Post"""
+  contactPost: String
 }
 
 input UpdateSupplierInput {
@@ -604,6 +628,9 @@ input UpdateSupplierInput {
 
   """Supplier mail"""
   mail: String
+
+  """Company number"""
+  phoneNumber: String
 
   """Supplier description"""
   description: String
@@ -622,6 +649,15 @@ input UpdateSupplierInput {
 
   """Supplier nif"""
   nif: String
+
+  """Contact Mail"""
+  contactMail: String
+
+  """Contact Phone Number"""
+  contactPhoneNumber: String
+
+  """Contact Post"""
+  contactPost: String
   id: String!
 }
 

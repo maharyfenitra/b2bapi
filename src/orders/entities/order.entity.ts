@@ -7,7 +7,7 @@ export class OrderEntity {
   id?: string;
 
   @Field(() => String, { description: 'Provider id' })
-  providerId: string;
+  supplierId: string;
 
   @Field(() => String, { description: 'Order reference' })
   reference: string;
