@@ -15,12 +15,12 @@ export class CustomersResolver {
     return await this.customersService.create(createCustomerInput);
   }
 
-  @Query(() => [CustomerEntity], { name: 'customers' })
+  @Query(() => [CustomerEntity], { name: 'findAllCustomers' })
   async findAll(): Promise<CustomerEntity[]> {
     return await this.customersService.findAll();
   }
 
-  @Query(() => CustomerEntity, { name: 'customer' })
+  @Query(() => CustomerEntity, { name: 'findOneCustomer' })
   async findOne(
     @Args('id', { type: () => String }) id: string,
   ): Promise<CustomerEntity> {
