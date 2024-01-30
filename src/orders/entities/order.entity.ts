@@ -15,8 +15,11 @@ export class OrderEntity {
   @Field(() => String, { description: 'Order description' })
   description: string;
 
-  @Field(() => [OrderDetailsEntity], { description: 'order details' })
-  orderDetailsEntity: OrderDetailsEntity[];
+  @Field(() => [OrderDetailsEntity], {
+    description: 'order details',
+    nullable: true,
+  })
+  orderDetailsEntity?: OrderDetailsEntity[];
 
   @Field(() => Number)
   status: number;

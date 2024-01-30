@@ -88,11 +88,14 @@ type ItemEntity {
   """Item id"""
   id: String!
 
+  """Item code"""
+  code: String!
+
   """Item label"""
   label: String!
 
   """Item description"""
-  description: String!
+  description: String
   price: Float!
 
   """id of the user who created the item"""
@@ -144,7 +147,7 @@ type OrderEntity {
   description: String!
 
   """order details"""
-  orderDetailsEntity: [OrderDetailsEntity!]!
+  orderDetailsEntity: [OrderDetailsEntity!]
   status: Float!
   createdAt: DateTime!
   updateAt: DateTime
@@ -261,9 +264,9 @@ type Query {
   payements: [Payement!]!
   payement(id: Int!): Payement!
   findAllitems: [ItemEntity!]!
-  item(id: Int!): ItemEntity!
+  findOneItem(id: String!): ItemEntity!
   findAllOrders: [OrderEntity!]!
-  findOrder(id: String!): OrderEntity!
+  findOneOrder(id: String!): OrderEntity!
   invoices: [Invoice!]!
   invoice(id: Int!): Invoice!
   findAllSuppliers: [SupplierEntity!]!
@@ -505,6 +508,9 @@ input UpdatePayementInput {
 }
 
 input CreateItemInput {
+  """Item code"""
+  code: String!
+
   """Item label"""
   label: String!
 
@@ -519,8 +525,11 @@ input CreateItemInput {
 }
 
 input UpdateItemInput {
+  """Item code"""
+  code: String
+
   """Item label"""
-  label: String!
+  label: String
 
   """Item description"""
   description: String
@@ -542,16 +551,7 @@ input CreateOrderInput {
 
   """Order description"""
   description: String!
-  orderDetailsInput: [OrderDetailsInput!]!
   createdDate: DateTime
-}
-
-input OrderDetailsInput {
-  id: String
-  itemId: String!
-  label: String!
-  qty: Float!
-  price: Float!
 }
 
 input UpdateOrderInput {
@@ -563,7 +563,6 @@ input UpdateOrderInput {
 
   """Order description"""
   description: String
-  orderDetailsInput: [OrderDetailsInput!]
   createdDate: DateTime
   id: String!
 }
@@ -571,6 +570,14 @@ input UpdateOrderInput {
 input CreateOrderDetailsInput {
   orderId: String!
   orderDetailsInput: [OrderDetailsInput!]!
+}
+
+input OrderDetailsInput {
+  id: String
+  itemId: String!
+  label: String!
+  qty: Float!
+  price: Float!
 }
 
 input CreateInvoiceInput {
