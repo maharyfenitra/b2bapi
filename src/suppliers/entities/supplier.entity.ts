@@ -2,26 +2,43 @@ import { ObjectType, Field } from '@nestjs/graphql';
 
 @ObjectType()
 export class SupplierEntity {
-  @Field(() => String, { description: 'Supplier contact fisrt name' })
+  @Field(() => String, {
+    description: 'Supplier id',
+    nullable: true,
+  })
   id?: string;
-  @Field(() => String, { description: 'Supplier contact fisrt name' })
+  @Field(() => String, {
+    description: 'Supplier contact fisrt name',
+    nullable: true,
+  })
   firstName: string;
-  @Field(() => String, { description: 'Supplier contact last name' })
+  @Field(() => String, {
+    description: 'Supplier contact last name',
+    nullable: true,
+  })
   lastName: string;
-  @Field(() => String, { description: 'Supplier name' })
+  @Field(() => String, { description: 'Supplier name', nullable: true })
   name: string;
-  @Field(() => String, { description: 'Supplier mail' })
+  @Field(() => String, { description: 'Supplier mail', nullable: true })
   mail: string;
-  @Field(() => String, { description: 'Supplier description' })
+  @Field(() => String, { description: 'Company number', nullable: true })
+  phoneNumber: string;
+  @Field(() => String, { description: 'Supplier description', nullable: true })
   description: string;
-  @Field(() => String, { description: 'Supplier adress' })
+  @Field(() => String, { description: 'Supplier adress', nullable: true })
   adress: string;
-  @Field(() => String, { description: 'Supplier city' })
+  @Field(() => String, { description: 'Supplier city', nullable: true })
   city: string;
-  @Field(() => String, { description: 'Supplier area' })
+  @Field(() => String, { description: 'Supplier area', nullable: true })
   area: string;
-  @Field(() => String, { description: 'Supplier stat' })
+  @Field(() => String, { description: 'Supplier stat', nullable: true })
   stat: string;
-  @Field(() => String, { description: 'Supplier nif' })
+  @Field(() => String, { description: 'Supplier nif', nullable: true })
   nif: string;
+  @Field(() => String, { description: 'Contact Mail', nullable: true })
+  contactMail: string;
+  @Field(() => String, { description: 'Contact Phone Number', nullable: true })
+  contactPhoneNumber: string;
+  @Field(() => String, { description: 'Contact Post', nullable: true })
+  contactPost: string;
 }

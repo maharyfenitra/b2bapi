@@ -20,15 +20,22 @@ export class ItemsService {
     return await this.itemModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} item`;
+  async findOne(id: string): Promise<ItemEntity> {
+    return await this.itemModel.findById(id).exec();
   }
 
-  async update(id: string, updateItemInput: UpdateItemInput) {
-    const response = await this.itemModel.findByIdAndUpdate(
-      { _id: id },
-      { ...updateItemInput },
-    );
+  async update(
+    id: string,
+    updateItemInput: UpdateItemInput,
+  ): Promise<ItemEntity> {
+    const response = await this.itemModel
+      .findByIdAndUpdate(
+        { _id: id },
+        {
+          ...updateItemInput,
+        },
+      )
+      .exec();
     return { ...response, ...updateItemInput };
   }
 

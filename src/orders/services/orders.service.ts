@@ -7,7 +7,7 @@ import { Order } from '../schemas/order.schema';
 import { OrderEntity } from '../entities/order.entity';
 import { CreateOrderDetailsInput } from '../dto/create-order-details.input';
 import { OrderDetailsService } from './order-details.service';
-import { OrderDetailsEntity } from '../entities/order-details.entity';
+//import { OrderDetailsEntity } from '../entities/order-details.entity';
 
 @Injectable()
 export class OrdersService {
@@ -18,31 +18,35 @@ export class OrdersService {
 
   async create(createOrderInput: CreateOrderInput): Promise<OrderEntity> {
     const response = await new this.orderModel({
-      providerId: createOrderInput.providerId,
+      supplierId: createOrderInput.supplierId,
       reference: createOrderInput.reference,
       description: createOrderInput.description,
     }).save();
-
+    /*
     const details = this.orderDetailsService.createOrderDetails({
       orderId: response.id,
       orderDetailsInput: createOrderInput.orderDetailsInput,
-    });
+    });*/
 
     return {
       ...response,
       id: response.id,
       reference: response.reference,
       description: response.description,
-      orderDetailsEntity: details as unknown as OrderDetailsEntity[],
+      //orderDetailsEntity: details as unknown as OrderDetailsEntity[],
     };
   }
 
   async findAll(): Promise<OrderEntity[]> {
-    return await this.orderModel.find();
+    return await this.orderModel.find().sort({ createdAt: 'desc' });
   }
 
-  async findOne(id: string) {
-    const response = await this.orderModel.findOne({ _id: id }).exec();
+  async findOne(id: string): Promise<OrderEntity> {
+    const response = await this.orderModel.findById(id).exec();
+    console.log(response);
+    const details = await this.orderDetailsService.findOrderDetails(id);
+
+    response['orderDetailsEntity'] = details;
     return response;
   }
 

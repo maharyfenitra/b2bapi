@@ -13,6 +13,9 @@ export class OrderDetailsService {
     private orderDetailsModel: Model<OrderDetails>,
   ) {}
 
+  async findOrderDetails(id: string): Promise<OrderDetailsEntity[]> {
+    return await this.orderDetailsModel.find({ orderId: id });
+  }
   async createOrderDetails(
     details: CreateOrderDetailsInput,
   ): Promise<OrderDetailsEntity[]> {
