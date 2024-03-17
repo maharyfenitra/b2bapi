@@ -27,7 +27,7 @@ export class SupplierResolver {
     return await this.suppliersService.findOne(id);
   }
 
-  @Mutation(() => SupplierEntity)
+  @Mutation(() => SupplierEntity, { name: 'updateSupplier' })
   async updateSupplier(
     @Args('updateSupplierInput') updateSupplierInput: UpdateSupplierInput,
   ): Promise<SupplierEntity> {

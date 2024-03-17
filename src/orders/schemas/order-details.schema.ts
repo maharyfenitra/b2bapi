@@ -22,6 +22,9 @@ export class OrderDetails {
   label: string;
 
   @Prop({ type: Number, required: true })
+  price: number;
+
+  @Prop({ type: Number, required: true })
   qty: number;
 
   @Prop({ default: 1 })

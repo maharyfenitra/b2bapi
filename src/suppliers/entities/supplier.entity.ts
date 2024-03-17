@@ -3,7 +3,7 @@ import { ObjectType, Field } from '@nestjs/graphql';
 @ObjectType()
 export class SupplierEntity {
   @Field(() => String, {
-    description: 'Supplier contact fisrt name',
+    description: 'Supplier id',
     nullable: true,
   })
   id?: string;

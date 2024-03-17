@@ -88,11 +88,14 @@ type ItemEntity {
   """Item id"""
   id: String!
 
+  """Item code"""
+  code: String!
+
   """Item label"""
   label: String!
 
   """Item description"""
-  description: String!
+  description: String
   price: Float!
 
   """id of the user who created the item"""
@@ -144,7 +147,7 @@ type OrderEntity {
   description: String!
 
   """order details"""
-  orderDetailsEntity: [OrderDetailsEntity!]!
+  orderDetailsEntity: [OrderDetailsEntity!]
   status: Float!
   createdAt: DateTime!
   updateAt: DateTime
@@ -156,7 +159,7 @@ type Invoice {
 }
 
 type SupplierEntity {
-  """Supplier contact fisrt name"""
+  """Supplier id"""
   id: String
 
   """Supplier contact fisrt name"""
@@ -204,37 +207,49 @@ type SupplierEntity {
 
 type CustomerEntity {
   """Supplier contact fisrt name"""
-  id: String!
+  id: String
 
   """Supplier contact fisrt name"""
-  firstName: String!
+  firstName: String
 
   """Supplier contact last name"""
-  lastName: String!
+  lastName: String
 
   """Supplier name"""
-  name: String!
+  name: String
 
   """Supplier mail"""
-  mail: String!
+  mail: String
+
+  """Company number"""
+  phoneNumber: String
 
   """Supplier description"""
-  description: String!
+  description: String
 
   """Supplier adress"""
-  adress: String!
+  adress: String
 
   """Supplier city"""
-  city: String!
+  city: String
 
   """Supplier area"""
-  area: String!
+  area: String
 
   """Supplier stat"""
-  stat: String!
+  stat: String
 
   """Supplier nif"""
-  nif: String!
+  nif: String
+
+  """Contact Mail"""
+  contactMail: String
+
+  """Contact Phone Number"""
+  contactPhoneNumber: String
+
+  """Contact Post"""
+  contactPost: String
 }
 
 type Query {
@@ -249,15 +264,15 @@ type Query {
   payements: [Payement!]!
   payement(id: Int!): Payement!
   findAllitems: [ItemEntity!]!
-  item(id: Int!): ItemEntity!
+  findOneItem(id: String!): ItemEntity!
   findAllOrders: [OrderEntity!]!
-  findOrder(id: String!): OrderEntity!
+  findOneOrder(id: String!): OrderEntity!
   invoices: [Invoice!]!
   invoice(id: Int!): Invoice!
   findAllSuppliers: [SupplierEntity!]!
   findOneSupplier(id: String!): SupplierEntity!
-  customers: [CustomerEntity!]!
-  customer(id: String!): CustomerEntity!
+  findAllCustomers: [CustomerEntity!]!
+  findOneCustomer(id: String!): CustomerEntity!
 }
 
 input UserSearchInput {
@@ -493,6 +508,9 @@ input UpdatePayementInput {
 }
 
 input CreateItemInput {
+  """Item code"""
+  code: String!
+
   """Item label"""
   label: String!
 
@@ -507,8 +525,11 @@ input CreateItemInput {
 }
 
 input UpdateItemInput {
+  """Item code"""
+  code: String
+
   """Item label"""
-  label: String!
+  label: String
 
   """Item description"""
   description: String
@@ -530,16 +551,7 @@ input CreateOrderInput {
 
   """Order description"""
   description: String!
-  orderDetailsInput: [OrderDetailsInput!]!
   createdDate: DateTime
-}
-
-input OrderDetailsInput {
-  id: String
-  itemId: String!
-  label: String!
-  qty: Float!
-  price: Float!
 }
 
 input UpdateOrderInput {
@@ -551,7 +563,6 @@ input UpdateOrderInput {
 
   """Order description"""
   description: String
-  orderDetailsInput: [OrderDetailsInput!]
   createdDate: DateTime
   id: String!
 }
@@ -559,6 +570,14 @@ input UpdateOrderInput {
 input CreateOrderDetailsInput {
   orderId: String!
   orderDetailsInput: [OrderDetailsInput!]!
+}
+
+input OrderDetailsInput {
+  id: String
+  itemId: String!
+  label: String!
+  qty: Float!
+  price: Float!
 }
 
 input CreateInvoiceInput {
@@ -662,66 +681,94 @@ input UpdateSupplierInput {
 }
 
 input CreateCustomerInput {
-  """Customer contact fisrt name"""
-  firstName: String!
+  """Supplier contact fisrt name"""
+  id: String
 
-  """Customer contact last name"""
-  lastName: String!
+  """Supplier contact fisrt name"""
+  firstName: String
 
-  """Customer name"""
-  name: String!
+  """Supplier contact last name"""
+  lastName: String
 
-  """Customer mail"""
-  mail: String!
+  """Supplier name"""
+  name: String
 
-  """Customer description"""
-  description: String!
+  """Supplier mail"""
+  mail: String
 
-  """Customer adress"""
-  adress: String!
+  """Company number"""
+  phoneNumber: String
 
-  """Customer city"""
-  city: String!
+  """Supplier description"""
+  description: String
 
-  """Customer area"""
-  area: String!
+  """Supplier adress"""
+  adress: String
 
-  """Customer stat"""
-  stat: String!
+  """Supplier city"""
+  city: String
 
-  """Customer nif"""
-  nif: String!
+  """Supplier area"""
+  area: String
+
+  """Supplier stat"""
+  stat: String
+
+  """Supplier nif"""
+  nif: String
+
+  """Contact Mail"""
+  contactMail: String
+
+  """Contact Phone Number"""
+  contactPhoneNumber: String
+
+  """Contact Post"""
+  contactPost: String
 }
 
 input UpdateCustomerInput {
-  """Customer contact fisrt name"""
+  id: String!
+
+  """Supplier contact fisrt name"""
   firstName: String
 
-  """Customer contact last name"""
+  """Supplier contact last name"""
   lastName: String
 
-  """Customer name"""
+  """Supplier name"""
   name: String
 
-  """Customer mail"""
+  """Supplier mail"""
   mail: String
 
-  """Customer description"""
+  """Company number"""
+  phoneNumber: String
+
+  """Supplier description"""
   description: String
 
-  """Customer adress"""
+  """Supplier adress"""
   adress: String
 
-  """Customer city"""
+  """Supplier city"""
   city: String
 
-  """Customer area"""
+  """Supplier area"""
   area: String
 
-  """Customer stat"""
+  """Supplier stat"""
   stat: String
 
-  """Customer nif"""
+  """Supplier nif"""
   nif: String
-  id: String!
+
+  """Contact Mail"""
+  contactMail: String
+
+  """Contact Phone Number"""
+  contactPhoneNumber: String
+
+  """Contact Post"""
+  contactPost: String
 }

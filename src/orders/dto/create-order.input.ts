@@ -1,5 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { OrderDetailsInput } from './order-details.input';
+//import { OrderDetailsInput } from './order-details.input';
 
 @InputType()
 export class CreateOrderInput {
@@ -15,8 +15,8 @@ export class CreateOrderInput {
   @Field(() => String, { description: 'Order description' })
   description?: string;
 
-  @Field(() => [OrderDetailsInput])
-  orderDetailsInput: OrderDetailsInput[];
+  // @Field(() => [OrderDetailsInput])
+  // orderDetailsInput: OrderDetailsInput[];
 
   @Field(() => Date, { nullable: true })
   createdDate?: Date;

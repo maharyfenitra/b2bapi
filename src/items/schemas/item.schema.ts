@@ -6,6 +6,9 @@ export type ItemDocument = HydratedDocument<Item>;
 @Schema({ timestamps: true })
 export class Item {
   @Prop({ type: String, required: true })
+  code: string;
+
+  @Prop({ type: String, required: true })
   label: string;
 
   @Prop({ type: String, default: '' })

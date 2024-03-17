@@ -5,10 +5,13 @@ export class ItemEntity {
   @Field(() => String, { description: 'Item id' })
   id?: string;
 
+  @Field(() => String, { description: 'Item code' })
+  code: string;
+
   @Field(() => String, { description: 'Item label' })
   label: string;
 
-  @Field(() => String, { description: 'Item description' })
+  @Field(() => String, { description: 'Item description', nullable: true })
   description: string;
 
   @Field(() => Float)
